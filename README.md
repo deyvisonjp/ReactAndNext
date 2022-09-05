@@ -11,3 +11,12 @@ Uma funcionalidade importante é transformar, agrupar ou empacotar qualquer recu
 Portanto, o desenvolvedor consegue usar o código-fonte para selecionar os arquivos desejados e decidir como irá processá-los.
 ![WebPack](https://miro.medium.com/max/1400/1*iBITv3YhdY85BbWfKRkjbA.png)
 
+## Métodos de ciclo de vida
+- componentDidMount() {}
+  - É invocado imediatamente após um componente ser montado
+- componentDidUpdate() {}
+  - É invocado imediatamente após alguma atualização ocorrer. Este método não é chamado pelo initial render.
+  - Excelente para checar se ocorreu alguma mudança logo de cara no estado da aplicação.
+- componentWillUnmount() {}
+  - É invocado imediatamente antes que um componente seja desmontado e destruído
+
