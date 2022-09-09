@@ -5,6 +5,7 @@ import "./style.css";
 import { Posts } from "../../components/Posts";
 import { loadPosts } from "../../utils/load-posts";
 import { Button } from "../../components/Button";
+import { TextInput } from "../../components/TextInput";
 
 class Home extends Component {
   state = {
@@ -12,6 +13,7 @@ class Home extends Component {
     allPosts: [],
     page: 0,
     postPerPage: 10,
+    searchValue: "",
   };
 
   async componentDidMount() {
@@ -36,21 +38,40 @@ class Home extends Component {
     this.setState({ posts, page: nextPage });
   };
 
+  handleChange = e => {
+    const { value } = e.target;
+    this.setState({ searchValue: value });
+    console.log(value);
+  };
+
   render() {
-    const { posts, page, postPerPage, allPosts } = this.state;
+    const { posts, page, postPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = page + postPerPage >= allPosts.length;
+
+    const filteredPosts = !!searchValue
+      ? allPosts.filter(post => {
+          return post.title.toLowerCase().includes(searchValue.toLowerCase());
+        })
+      : posts;
 
     return (
       <section className="container">
-        <div className="button-container">
-          <Button
-            textButton="Load more posts"
-            click={this.loadMorePosts}
-            disabled={noMorePosts}
-          />
-        </div>
+        {/* Se tiver pesquisa não aparece h1 */}
+        {!!searchValue && <h1>Search Value: "{searchValue}"</h1>}
+        <TextInput searchValue={searchValue} handleChange={this.handleChange} />
 
-        <Posts posts={posts} />
+        {/* Se não tiver pesquisa */}
+        {!searchValue && (
+          <div className="button-container">
+            <Button
+              textButton="Load more posts"
+              click={this.loadMorePosts}
+              disabled={noMorePosts}
+            />
+          </div>
+        )}
+
+        <Posts posts={filteredPosts} />
       </section>
     );
   }

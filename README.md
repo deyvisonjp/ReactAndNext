@@ -32,5 +32,3 @@ Portanto, o desenvolvedor consegue usar o código-fonte para selecionar os arqui
 
 ## GraphQL
 
-- Final dos anos 60, invocar métodos remotamente por meio da rede
-- Rig Filnd: Conceito Rest (ClientServer)
