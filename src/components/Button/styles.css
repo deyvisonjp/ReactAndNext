@@ -1,0 +1,13 @@
+.button-page {
+  width: 100%;
+  background: rgb(19, 36, 190);
+  color: #eee;
+  padding: 15px 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.button-page:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
